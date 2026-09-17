@@ -70,9 +70,9 @@
     }
     for (const f of rows) {
       const tr = document.createElement("tr");
-      const td1 = document.createElement("td"); td1.textContent = f.text;
-      const td2 = document.createElement("td"); td2.textContent = f.sheet;
-      const td3 = document.createElement("td");
+      const td1 = document.createElement("td"); td1.textContent = f.text; td1.dataset.k = "строка";
+      const td2 = document.createElement("td"); td2.textContent = f.sheet; td2.dataset.k = "лист";
+      const td3 = document.createElement("td"); td3.dataset.k = "подтверждено";
       td3.innerHTML = f.ok
         ? '<span class="ok">подтверждено</span> · ' + f.date
         : '<span class="wait">жду подтверждения</span>';
@@ -81,7 +81,7 @@
     }
     const wait = rows.filter((f) => !f.ok).length;
     partial.hidden = wait === 0;
-    partial.firstChild.textContent = `${rows.length - wait} из ${rows.length} строк подтверждено, `;
+    partial.firstChild.textContent = `${wait} из ${rows.length} строк ещё не подтверждены`;
     state.textContent = `показано ${rows.length} из ${FACTS.length} строк`;
   }
 
@@ -125,6 +125,15 @@
   const counter = $("#wish-count"), store = $("#wish-store"), list = $("#wish-list");
   const KEY = "maxim12.wishes";
   const MIN = 8;
+  /* русское склонение: 1 символ, 3 символа, 11 символов (К-15) */
+  const plural = (n, one, few, many) => {
+    const m10 = n % 10, m100 = n % 100;
+    if (m10 === 1 && m100 !== 11) return one;
+    if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return few;
+    return many;
+  };
+  const sym = (n) => `${n} ${plural(n, "символ", "символа", "символов")}`;
+  const rec = (n) => `${n} ${plural(n, "запись", "записи", "записей")}`;
   const load = () => { try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { return []; } };
   const save = (v) => { try { localStorage.setItem(KEY, JSON.stringify(v)); return true; } catch (e) { return false; } };
 
@@ -139,14 +148,14 @@
       li.appendChild(document.createTextNode((w.who ? w.who + ": " : "") + w.text));
       list.appendChild(li);
     });
-    store.textContent = "записей: " + arr.length;
+    store.textContent = "в деле: " + rec(arr.length);
   }
   function check() {
     const n = textI.value.trim().length;
     counter.classList.remove("good", "bad");
     if (!n) { counter.textContent = "дело ждёт первую запись"; return; }
-    if (n < MIN) { counter.textContent = `не хватает ${MIN - n} символов, чтобы запись пошла в дело`; counter.classList.add("bad"); return; }
-    counter.textContent = `готово к записи · ${n} символов`;
+    if (n < MIN) { counter.textContent = `не хватает ${sym(MIN - n)}, чтобы запись пошла в дело`; counter.classList.add("bad"); return; }
+    counter.textContent = `готово к записи · ${sym(n)}`;
     counter.classList.add("good");
   }
   textI.addEventListener("input", check);
@@ -157,7 +166,7 @@
     e.preventDefault();
     const text = textI.value.trim();
     if (text.length < MIN) {
-      counter.textContent = `не хватает ${Math.max(1, MIN - text.length)} символов, чтобы запись пошла в дело`;
+      counter.textContent = `не хватает ${sym(Math.max(1, MIN - text.length))}, чтобы запись пошла в дело`;
       counter.classList.add("bad");
       textI.focus();
       return;

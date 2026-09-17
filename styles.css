@@ -92,6 +92,7 @@ section { padding: clamp(56px, 9vw, 120px) clamp(16px, 5vw, 72px); border-top: 1
 /* ── лист 00 · заставка (motion/recipes/intro-assembly) ───────────── */
 .intro {
   position: fixed; inset: 0; z-index: 50;
+  min-height: 100vh; min-height: 100dvh;
   background: var(--abyss);
   display: grid; place-items: center;
   container-type: inline-size;
@@ -103,7 +104,7 @@ section { padding: clamp(56px, 9vw, 120px) clamp(16px, 5vw, 72px); border-top: 1
 .mega-row { display: flex; gap: .01em; }
 .mega-row .ltr {
   display: block;
-  font-size: clamp(1.75rem, min(14vw, calc(88vw / var(--letters, 8) / .95)), 9rem);
+  font-size: clamp(1.5rem, min(14vw, calc(82vw / var(--letters, 8) / .95)), 9rem);
   line-height: 1.02;
   color: var(--hot);
   text-transform: uppercase;
@@ -171,7 +172,7 @@ section { padding: clamp(56px, 9vw, 120px) clamp(16px, 5vw, 72px); border-top: 1
 .stamp {
   margin-top: var(--gap-4); display: inline-grid; place-items: center; gap: 2px;
   width: 96px; height: 96px; border: 2px solid var(--hot); border-radius: 50%;
-  color: var(--hot); font-size: .6875rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--hot); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase;
   transform: rotate(-8deg);
 }
 .stamp b { font-size: 1.125rem; letter-spacing: 0; }
@@ -234,14 +235,14 @@ section { padding: clamp(56px, 9vw, 120px) clamp(16px, 5vw, 72px); border-top: 1
   display: inline-flex; align-items: center; gap: 8px;
   transition: border-color .16s var(--e-coast), color .16s var(--e-coast), background-color .16s var(--e-coast);
 }
-.chip b { font-size: .6875rem; color: var(--meta); }
+.chip b { font-size: .75rem; color: var(--meta); }
 .chip:hover { border-color: var(--hot); }
 .chip.is-on { background: var(--hot); border-color: var(--hot); color: var(--abyss); }
 .chip.is-on b { color: var(--abyss); }
 .chip-warn { margin-inline-start: auto; color: var(--meta); }
 .state { font-size: .8125rem; letter-spacing: .12em; text-transform: uppercase; color: var(--spark); margin: 0 0 var(--gap-3); min-height: 20px; }
 .index { width: 100%; border-collapse: collapse; font-size: .9375rem; }
-.index th { text-align: start; font-size: .6875rem; letter-spacing: .16em; text-transform: uppercase; color: var(--meta); padding: var(--gap-2) var(--gap-3); border-bottom: 1px solid var(--rule); }
+.index th { text-align: start; font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; color: var(--meta); padding: var(--gap-2) var(--gap-3); border-bottom: 1px solid var(--rule); }
 .index td { padding: 14px var(--gap-3); border-bottom: 1px solid var(--rule); vertical-align: top; }
 .index tr { transition: background-color .2s var(--e-coast); }
 .index tr:hover { background: color-mix(in oklab, var(--plate) 70%, transparent); }
@@ -292,7 +293,7 @@ section { padding: clamp(56px, 9vw, 120px) clamp(16px, 5vw, 72px); border-top: 1
 .wish-form label span { letter-spacing: 0; text-transform: none; color: var(--rule); color: #6f8bb0; }
 .wish-form input, .wish-form textarea {
   font-family: "PT Sans", sans-serif;
-  font-size: 16px; color: var(--ink); background: var(--plate);
+  font-size: 16px; min-height: var(--tap); color: var(--ink); background: var(--plate);
   border: 1px solid var(--rule); border-radius: 2px; padding: 12px 14px; width: 100%;
   transition: border-color .16s var(--e-coast);
 }
@@ -328,10 +329,110 @@ section { padding: clamp(56px, 9vw, 120px) clamp(16px, 5vw, 72px); border-top: 1
   .nav { margin-inline-start: 0; }
 }
 
+
+/* ── мобильная правка: список 22 вьюпортов из testing/device-sweep/viewport-list.js,
+   стандарты docs/MOBILE_PLAYBOOK.md (К-12, Q-08) ─────────────────────────────── */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html:not(.js) .intro { display: none; }
+body { -webkit-tap-highlight-color: transparent; overflow-wrap: anywhere; }
+button, .btn, .ghost, .chip, .link, a, input, textarea { touch-action: manipulation; }
+main, .page { overflow-x: clip; }
+.foot p, .lead, .step p, .note, .wish-side p, .life-row p { overflow-wrap: anywhere; }
+
+/* без скриптов и в состоянии «готово» герой видим целиком */
+#mega-hero .hl { opacity: 1; }
+html.js [data-hero="play"] #mega-hero .hl { opacity: 0; transform: translate3d(0, .45em, 0) scale(.88); }
+html.js [data-hero="play"] .stair li { opacity: 0; transform: translate3d(-10px, 6px, 0); }
+html.js [data-hero="play"] .stamp { opacity: 0; }
+html.js [data-hero="play"] [data-reveal] .facts dd, html.js [data-hero="play"] .lead { opacity: 0; }
+.hero-rule { height: 2px; background: var(--hot); width: 0; max-width: 100%; margin: var(--gap-3) 0 var(--gap-4); }
+.stamp.pressed { animation: press .34s var(--e-snap); }
+@keyframes press { 0% { transform: rotate(-8deg) scale(1.16); } 100% { transform: rotate(-8deg) scale(1); } }
+
+@media (max-width: 900px) {
+  .head { row-gap: var(--gap-1); padding-block: var(--gap-2) var(--gap-2); }
+  .nav {
+    order: 3; width: 100%; margin-inline-start: 0; flex-wrap: nowrap;
+    overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity; padding-inline: 2px;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { flex: 0 0 auto; scroll-snap-align: start; padding-inline: 10px; border: 1px solid var(--rule); border-radius: 999px; }
+  .replay { margin-inline-start: auto; font-size: .75rem; padding: 8px 12px; }
+  .step { max-width: none; }
+  .mega { font-size: 15cqw; }
+}
+
+@media (max-width: 620px) {
+  section { padding: clamp(40px, 12vw, 84px) max(16px, env(safe-area-inset-left)) clamp(44px, 12vw, 84px) max(16px, env(safe-area-inset-right)); }
+  .head { padding-inline: max(16px, env(safe-area-inset-left)) max(16px, env(safe-area-inset-right)); }
+  .hero, .steps, .wish { gap: var(--gap-5); }
+  .mega { font-size: 17vw; line-height: .94; }
+  .lead { font-size: 1.0625rem; }
+  .strap { width: min(76vw, 420px); }
+  .intro-ui { padding-inline: var(--gap-3); }
+  .intro-ui .ghost { flex: 1 1 auto; justify-content: center; }
+  .stamp { width: 84px; height: 84px; }
+  .stair { margin: var(--gap-4) 0; }
+  .stair li, .stair li:nth-child(2), .stair li:nth-child(3), .stair li:nth-child(4) {
+    margin-inline-start: 0; grid-template-columns: none; flex-wrap: wrap; row-gap: 2px;
+  }
+  .stair li { padding-block: var(--gap-2); }
+  .plank:nth-child(2), .plank:nth-child(3) { margin-inline-start: 0; }
+  .index thead { display: none; }
+  .index, .index tbody, .index tr, .index td { display: block; width: 100%; }
+  .index tr { border-bottom: 1px solid var(--rule); padding: var(--gap-3) 0; }
+  .index td { border: 0; padding: 1px 0; }
+  .index td:first-child { font-size: 1rem; }
+  .index td:nth-child(n+2) { font-size: .875rem; }
+  .index td[data-k]::before { content: attr(data-k) " · "; font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; color: #6f8bb0; }
+  .filter { gap: var(--gap-2); }
+  .chip { flex: 0 1 auto; font-size: .75rem; padding: 8px 12px; }
+  .tool-foot { gap: var(--gap-2); }
+  .tool-foot span { width: 100%; }
+  .grid { gap: var(--gap-2); }
+  .wish-form input, .wish-form textarea { font-size: 16px; }
+}
+
+@media (max-width: 360px) {
+  .mega { font-size: 19vw; }
+  .brand span { display: none; }
+  .facts { font-size: .875rem; }
+  .stamp { width: 76px; height: 76px; font-size: .75rem; }
+  .stamp b { font-size: 1rem; }
+}
+
+/* телефон в ландшафте: заставка не должна резать титр по высоте */
+@media (orientation: landscape) and (max-height: 520px) {
+  .mega-row .ltr { font-size: clamp(1rem, min(11vh, calc(66vh / var(--letters, 8) / .95)), 4.5rem); }
+  .strap { width: min(38vw, 300px); height: 2px; }
+  .intro-meta { font-size: .75rem; }
+  .intro-ui { bottom: 6px; }
+  .head { position: static; }
+  .plate { top: 0; }
+}
+
+/* палец вместо курсора: hover-состояния не единственные (Q-08) */
+@media (hover: none) {
+  .ghost:active, .btn:active, .chip:active { border-color: var(--hot); color: var(--hot); }
+  .btn:active { background: var(--spark); color: var(--abyss); }
+  .nav a:active, a:active { color: var(--spark); }
+  .step { opacity: 1; }
+}
+
 /* SK-06 · при уменьшенном движении заставка не играется вовсе */
 @media (prefers-reduced-motion: reduce) {
   .intro { display: none; }
   *, *::before, *::after { transition: none; animation: none; }
   .step { opacity: 1; }
   .mega-row .ltr { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-hero] #mega-hero .hl, html.js [data-hero] .stair li,
+  html.js [data-hero] .stamp, html.js [data-hero] .lead, html.js [data-hero] .facts dd {
+    opacity: 1; transform: none;
+  }
+  .hero-rule { width: 100%; }
+  .stamp.pressed { animation: none; }
 }
