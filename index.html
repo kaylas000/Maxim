@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Максим Селиванов — дело №12: чем я живу и что собираю</title>
+<meta name="description" content="Дело №12 Максима Селиванова: кодовая заставка с искрами, шесть шагов сборки, реестр достижений, семья без фото и поздравление в дело. Собрано вчера.">
+<meta name="robots" content="index,follow">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#05132b">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Максим Селиванов — дело №12">
+<meta property="og:description" content="Кодовая заставка с искрами и шесть листов дела: спорт, мастерская, семья, цель.">
+<meta property="og:locale" content="ru_RU">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=PT+Sans:wght@400;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add("js");</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Максим Селиванов","description":"Дело №12: личное досье двенадцатилетнего Максима — сборка, спорт, мастерская.","knowsAbout":["сборка механизмов","воркаут","столярные работы","код и анимация"],"mainEntityOfPage":{"@type":"WebPage","@id":"#delo"}}
+</script>
+</head>
+<body>
+<a class="skip" href="#delo">к делу</a>
+
+<div class="intro" id="intro" data-state="idle" aria-label="Заставка дела №12">
+  <div class="intro-frame" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+  <div class="curtain curtain-a" aria-hidden="true"></div>
+  <div class="curtain curtain-b" aria-hidden="true"></div>
+  <canvas class="sparks" id="sparks" aria-hidden="true"></canvas>
+  <div class="intro-stage">
+    <h2 class="mega-row" id="row-1" data-letters="6" style="--letters:6">
+      <span class="ltr">М</span><span class="ltr">А</span><span class="ltr">К</span><span class="ltr">С</span><span class="ltr">И</span><span class="ltr">М</span>
+    </h2>
+    <div class="strap" id="strap" aria-hidden="true"><i></i></div>
+    <h2 class="mega-row" id="row-2" data-letters="9" style="--letters:9">
+      <span class="ltr">С</span><span class="ltr">Е</span><span class="ltr">Л</span><span class="ltr">И</span><span class="ltr">В</span><span class="ltr">А</span><span class="ltr">Н</span><span class="ltr">О</span><span class="ltr">В</span>
+    </h2>
+    <p class="intro-meta"><span id="intro-tc">000 / 204</span> · <span id="intro-preset">SBR-01 «Сварка»</span></p>
+  </div>
+  <div class="intro-ui">
+    <button class="ghost" id="intro-skip" data-analytics-event="intro_skip_click" type="button">Пропустить заставку <kbd>ESC</kbd></button>
+    <button class="ghost" id="intro-sound" data-analytics-event="intro_sound_toggle" type="button" aria-pressed="false">Звук выкл</button>
+  </div>
+</div>
+
+<div class="page" id="page">
+<header class="head">
+  <div class="brand"><b>МАКСИМ</b><span>дело №12</span></div>
+  <nav class="nav" aria-label="Листы дела">
+    <a href="#delo" data-analytics-event="nav_delo_click">дело</a>
+    <a href="#shagi" data-analytics-event="nav_shagi_click">шаги</a>
+    <a href="#dos" data-analytics-event="nav_dos_click">достижения</a>
+    <a href="#pozdrav" data-analytics-event="nav_pozdrav_click">поздравление</a>
+  </nav>
+  <button class="ghost replay" id="replay" data-analytics-event="intro_replay_click" type="button">Показать заставку</button>
+</header>
+
+<main>
+<section class="hero" id="delo" data-hero="wait">
+  <aside class="plate" id="plate" data-reveal>
+    <h3 class="plate-t">наряд листа 01</h3>
+    <dl class="facts">
+      <dt>собрано</dt><dd>15.09.2026</dd>
+      <dt>материал</dt><dd>код, шрифт, искры</dd>
+      <dt>герой</dt><dd>Максим С., 12 лет</dd>
+      <dt>объём</dt><dd>06 листов</dd>
+      <dt>приватность</dt><dd>без адреса и школы</dd>
+    </dl>
+    <div class="stamp" id="stamp" aria-hidden="true">G1<b>принято</b></div>
+  </aside>
+  <div class="hero-field">
+    <p class="kicker">дело №12 · личное</p>
+    <h1 class="mega" id="mega-hero">МОИ&nbsp;12</h1>
+    <p class="lead" data-reveal>Мне 12, отметил вчера. Это дело я собирал сам: заставку писал кодом,
+      факты складывал в листы, фотографии семьи оставил заглушками, потому что их
+      выкладывать страшновато.</p>
+    <ol class="stair" id="stair">
+      <li><b>204</b><span>кадра в заставке</span></li>
+      <li><b>3</b><span>пресета титра</span></li>
+      <li><b>2</b><span>акцента в палитре</span></li>
+      <li><b>0</b><span>npm-зависимостей</span></li>
+    </ol>
+    <div class="hero-rule" id="hero-rule" aria-hidden="true"></div>
+  <div class="row">
+      <a class="btn" href="#shagi" data-analytics-event="hero_start_steps_click">Начать сборку дела</a>
+      <button class="ghost" data-intro-replay data-analytics-event="hero_intro_replay_click" type="button">Повторить заставку</button>
+    </div>
+  </div>
+</section>
+
+<section class="steps" id="shagi">
+  <div class="steps-scene" data-sticky>
+    <p class="kicker">лист 02 · шесть шагов</p>
+    <h2>Как собиралось</h2>
+    <dl class="scene">
+      <dt id="scene-num">01</dt>
+      <dd id="scene-label">кто я</dd>
+      <dd id="scene-note">шаг меняет ровно одну строку листа</dd>
+    </dl>
+    <div class="progress" aria-hidden="true"><i id="scene-bar"></i></div>
+  </div>
+  <div class="steps-list">
+    <article class="step" data-active="false" data-num="01" data-label="кто я">
+      <h3>кто я</h3><p>Максим, 12 лет. Живу в области, люблю, когда вещь сделана руками и
+        работает без инструкций.</p></article>
+    <article class="step" data-num="02" data-label="учёба">
+      <h3>учёба</h3><p>Учусь, мне интересны физика и черчение. Названий школы и класса
+        здесь нет — так договорились с родителями.</p></article>
+    <article class="step" data-num="03" data-label="спорт">
+      <h3>спорт</h3><p>Турник и велик. Записал, сколько подходов делаю без остановки: цифра
+        честная, её видно на листе 03.</p></article>
+    <article class="step" data-num="04" data-label="руки">
+      <h3>руки и голова</h3><p>Собираю рамки, чиню петли, пробую паять. Первый ящик
+        кривоват, но держит.</p></article>
+    <article class="step" data-num="05" data-label="команда">
+      <h3>моя команда</h3><p>Мама, папа и два друга. На фото их нет, есть шесть рамок-заглушек.
+        <a href="#komanda" data-analytics-event="step5_to_team_click">смотреть команду</a></p></article>
+    <article class="step" data-num="06" data-label="цель">
+      <h3>цель 2026–2027</h3><p>Довести до ума мастерскую и выложить дело на свой домен,
+        чтобы ссылка была короткой.</p></article>
+  </div>
+</section>
+
+<section class="dos" id="dos">
+  <div class="dos-head">
+    <p class="kicker">лист 03 · реестр</p>
+    <h2>Достижения, отфильтрованные</h2>
+    <p class="note">строки-заполнители: настоящие вношу сам, дату и источник ставлю против каждой · в листе «Семья» строк нет до согласия родителей</p>
+  </div>
+  <div class="filter" role="group" aria-label="Фильтр реестра: категория строки">
+    <button class="chip is-on" data-cat="all" data-analytics-event="fact_filter_click" type="button" aria-pressed="true">Все<b>6</b></button>
+    <button class="chip" data-cat="school" data-analytics-event="fact_filter_click" type="button" aria-pressed="false">Школа<b>1</b></button>
+    <button class="chip" data-cat="sport" data-analytics-event="fact_filter_click" type="button" aria-pressed="false">Спорт<b>2</b></button>
+    <button class="chip" data-cat="hands" data-analytics-event="fact_filter_click" type="button" aria-pressed="false">Руки<b>2</b></button>
+    <button class="chip" data-cat="other" data-analytics-event="fact_filter_click" type="button" aria-pressed="false">Другое<b>1</b></button>
+    <button class="chip" data-cat="family" data-analytics-event="fact_filter_click" type="button" aria-pressed="false">Семья<b>0</b></button>
+    <button class="chip chip-warn" id="tool-break" data-analytics-event="tool_break_click" type="button">Показать состояние ошибки</button>
+  </div>
+  <p class="state" id="fact-state" role="status" aria-live="polite">показано 6 из 6 строк</p>
+  <table class="index" id="fact-table">
+    <caption class="vis">Реестр строк дела</caption>
+    <thead><tr><th scope="col" data-k="строка">строка</th><th scope="col" data-k="лист">лист</th><th scope="col" data-k="подтверждено">подтверждено</th></tr></thead>
+    <tbody id="fact-body"></tbody>
+  </table>
+  <div class="partial" id="fact-partial" hidden>2 из 6 строк ещё не подтверждены
+    <button class="link" data-analytics-event="fact_show_all_click" type="button">Показать весь реестр</button></div>
+  <p class="empty" id="fact-empty" hidden>в этой категории пока пусто: строку добавлю, когда появится факт
+    <button class="link" data-analytics-event="fact_filter_reset_click" type="button">Вернуть все строки</button></p>
+  <div class="err" id="fact-err" hidden>строки дела не читаются: аварийный режим включён вручную
+    <button class="link" id="fact-retry" data-analytics-event="fact_retry_click" type="button">Повторить попытку</button></div>
+  <div class="tool-foot">
+    <button class="ghost" id="fact-dl" data-analytics-event="fact_card_download" type="button">Скачать карточку этих строк</button>
+    <span id="tool-tc">лист 03 · v1</span>
+  </div>
+</section>
+
+<section class="team" id="komanda">
+  <p class="kicker">лист 04 · команда</p>
+  <h2>Моя команда</h2>
+  <div class="grid">
+    <figure class="ph ph-a"><span class="sl">мама</span></figure>
+    <figure class="ph ph-b"><span class="sl">папа</span></figure>
+    <figure class="ph ph-c"><span class="sl">я</span></figure>
+    <figure class="ph ph-d"><span class="sl">мы вместе</span></figure>
+    <figure class="ph ph-e"><span class="sl">праздник</span></figure>
+    <figure class="ph ph-f"><span class="sl">поездка</span></figure>
+  </div>
+  <p class="note">вместо фотографий диагональная штриховка: снимки появятся после согласия родителей</p>
+</section>
+
+<section class="life" id="zhivu">
+  <p class="kicker">лист 05 · быт</p>
+  <h2>Как я живу</h2>
+  <div class="life-row">
+    <article class="life-a"><h3>утро</h3><p>Зарядка на турнике, потом завтрак и дорога.
+      Люблю, когда успел до звонка.</p></article>
+    <article class="life-b"><h3>моё место</h3><p>Угол комнаты: верстак, полка с инструментом,
+      лампа на прищепке. Там пахнет деревом.</p></article>
+    <article class="life-c"><h3>день по пунктам</h3>
+      <ul><li>учёба</li><li>верстак</li><li>улица и велик</li><li>код вечером</li><li>книга перед сном</li></ul></article>
+  </div>
+  <div class="planks">
+    <p class="plank"><b>слушаю</b> рэп и саундтреки из игр, повторяю биты на гитаре</p>
+    <p class="plank"><b>играю</b> в волейбол во дворе, в шахматы с папой редко выигрываю</p>
+    <p class="plank"><b>ем</b> мамины блины, сам научился жарить яичницу и делать салат</p>
+  </div>
+</section>
+
+<section class="wish" id="pozdrav">
+  <div class="wish-form-wrap">
+    <p class="kicker">лист 06 · поздравление</p>
+    <h2>Записать в дело</h2>
+    <form class="wish-form" id="wish" novalidate>
+      <label for="wish-name">Кто пишет <span>(необязательно)</span>
+        <input id="wish-name" name="name" type="text" maxlength="40" placeholder="имя или «сестра»" autocomplete="off"></label>
+      <label for="wish-text">Текст
+        <textarea id="wish-text" name="text" rows="4" maxlength="420" placeholder="что-нибудь конкретное: про велик, про ящик, про код"></textarea></label>
+      <div class="wish-foot">
+        <span class="counter" id="wish-count">не хватает 8 символов, чтобы запись пошла в дело</span>
+        <button class="btn" type="submit" data-analytics-event="wish_submit_click">Записать поздравление в дело</button>
+      </div>
+      <p class="wish-hint">текст остаётся в этом браузере и никуда не уходит · <span id="wish-store">записей: 0</span></p>
+    </form>
+    <ol class="wish-list" id="wish-list"></ol>
+  </div>
+  <div class="wish-side">
+    <h3>позже</h3>
+    <p>Соберу все пожелания в лист 07 и покажу их на семейном ужине. Если браузер не
+      даёт сохранить запись, текст останется в поле — он не потеряется.</p>
+    <button class="ghost" id="wish-clear" data-analytics-event="wish_clear_click" type="button">Очистить дело</button>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <p>Дело №12 собрано 15.09.2026 · адрес, школа и телефон не публикуются · фото семьи — заглушки</p>
+  <nav aria-label="По делу"><a href="#delo">дело</a><a href="#plate">наряд</a><a href="#shagi">шаги</a></nav>
+</footer>
+</div>
+
+<script src="main.js"></script>
+<script src="page.js"></script>
+</body>
+</html>
